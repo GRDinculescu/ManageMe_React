@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,6 +15,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@theme {
+
+	--color-text: #00ff00;
+	--color-system-text: #808080;
+	--color-a: #00ff00;
+	--color-a-visited: #00ff00;
+	--color-border: #00ff00;
+	--color-bg: yellow;
+
+}
+
+
+
+/*
 a {
   font-weight: 500;
   color: #646cff;
@@ -66,3 +82,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+*/
