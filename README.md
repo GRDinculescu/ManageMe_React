@@ -1,3 +1,14 @@
+# ManagMe
+
+The last project, but in react, if you want more info, see the other :P
+
+Tailwind, and maybe, theme based
+
+## Theme info:
+- @GRDinculescu you decide
+
+
+(vvv React jerg that idk if it will be used vvv)
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
