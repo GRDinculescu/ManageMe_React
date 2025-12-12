@@ -9,6 +9,8 @@ Tailwind, and maybe, theme based
 
 
 (vvv React jerg that idk if it will be used vvv)
+Pan con chorizo
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
