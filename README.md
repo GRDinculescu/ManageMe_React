@@ -9,7 +9,6 @@ Tailwind, and maybe, theme based
 
 
 (vvv React jerg that idk if it will be used vvv)
-Pan con chorizo
 
 # React + Vite
 
