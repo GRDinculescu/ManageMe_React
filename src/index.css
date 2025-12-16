@@ -16,14 +16,15 @@
 }
 
 @theme {
-
-	--color-text: #00ff00;
+	--color-text: #000;
 	--color-system-text: #808080;
 	--color-a: #00ff00;
 	--color-a-visited: #00ff00;
 	--color-border: #00ff00;
-	--color-bg: yellow;
-
+	--color-bg: #888;
+  --color-button-bg: #f00;
+  --color-button-add: #0f0;
+  --color-input: #fff;
 }
 
 

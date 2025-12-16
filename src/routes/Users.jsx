@@ -2,8 +2,10 @@ import Layout from './Layout';
 
 export default function Users () {
     return (
-        <Layout title="Users">
+    <><MenuBar/>
+        <Layout>
 
         </Layout>
+    </>
     )
 }
