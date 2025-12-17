@@ -1,7 +1,7 @@
 
 export default function MenuBar () {
     return (
-        <nav className="flex p-4 w-full bg-black justify-between items-center sticky top-0">
+        <nav className="flex p-4 w-full bg-black justify-between items-center">
             <a href="/" className="text-white font-bold">Logo</a>
             <ul className="flex space-x-4">
                 <li><a href="/login" className="text-white font-bold">login</a></li>
