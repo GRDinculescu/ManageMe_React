@@ -1,11 +1,31 @@
+import { useState } from "react";
 import Layout from "./Layout";
 import "../index.css";
 import Product from "../components/Product";
 import Category from "../components/Category";
-import { useState } from "react";
+import Modal from "../components/Modal";
+import ProductForm from "../components/ProductForm";
 
 export default function Home() {
     const [showFilters, setShowFilters] = useState(false);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [mode, setMode] = useState("create");
+    const [selectedProduct, setSelectedProduct] = useState(null);
+
+    const openCreate = () => {
+        setMode("create");
+        setSelectedProduct(null);
+        setIsOpen(true);
+    };
+
+    const openEdit = (product) => {
+        setMode("edit");
+        setSelectedProduct(product);
+        setIsOpen(true);
+    };
+
+
 
     return (
         <>
@@ -16,12 +36,12 @@ export default function Home() {
                         {/* Filtros */}
                         <div className="grid grid-cols-3 py-2 px-3 bg-gray-700 rounded-xl w-full h-max">
                             <button type="button"
-                                className="justify-self-start bg-sky-700 px-3 py-1 rounded-lg font-bold" onClick={() => setShowFilters(!showFilters)}>FILTROS</button>
+                                className="cursor-pointer justify-self-start bg-sky-700 hover:bg-sky-600 transition duration-300 px-3 py-1 rounded-lg font-bold" onClick={() => setShowFilters(!showFilters)}>FILTROS</button>
                             <input type="text"
                                 className="justify-self-center text-center bg-white text-black rounded-md"
                                 placeholder="Insete filtro" />
-                            <button type="button"
-                                className="justify-self-end bg-green-600 px-3 rounded-lg font-bold">+</button>
+                            <button type="button" onClick={openCreate}
+                                className="cursor-pointer justify-self-end bg-green-600 hover:bg-green-500 transition duration-300 px-3 rounded-lg font-bold">+</button>
                         </div>
                         {/* Categorias */}
                         <div className={`flex-1 flex flex-row xl:flex-col p-5 bg-gray-700 rounded-2xl min-w-125 justify-between gap-4 overflow-y-auto
@@ -99,11 +119,26 @@ export default function Home() {
                     {/* Productos */}
                     <div className="flex-10 flex flex-wrap gap-5 p-5 min-w-150 bg-gray-700 rounded-t-2xl h-full overflow-y-auto">
                         {Array.from({ length: 51 }).map((_, index) => (
-                            <div key={index} className="flex-1 bg-slate-900 rounded-3xl">
+                            <div key={index} className="flex-1" onClick={openEdit}>
                                 <Product />
                             </div>
                         ))}
                     </div>
+
+                    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                        <ProductForm
+                            mode={mode}
+                            product={selectedProduct}
+                            onSubmit={(data) => {
+                                if (mode === "edit") {
+                                    console.log("EDIT", data);
+                                } else {
+                                    console.log("CREATE", data);
+                                }
+                                setIsOpen(false);
+                            }}
+                        />
+                    </Modal>
                 </div>
             </Layout>
         </>

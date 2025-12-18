@@ -1,6 +1,6 @@
 export default function Product () {
     return (
-        <div className='flex justify-between py-5 px-5 h-30 text-xl w-full min-w-125'>
+        <div className='cursor-pointer bg-slate-900 hover:bg-gray-800 transition duration-300 rounded-2xl flex justify-between py-5 px-5 h-30 text-xl w-full min-w-125'>
             <img src="/src/assets/face.png" alt=""/>
             <div className='flex flex-col mx-5 mr-7.5 flex-14'>
                 <p id='pName'>Name</p>
@@ -11,7 +11,6 @@ export default function Product () {
                     <li id='pStock'>Stock</li>
                 </ul>
             </div>
-            <button className="bg-sky-500 min-w-30 min-h-20 rounded-2xl">EDITAR</button>
         </div>
     )
 }
