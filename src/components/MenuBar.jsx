@@ -21,11 +21,13 @@ export default function MenuBar() {
             Home
           </Link>
         </li>
-        <li>
-          <Link to="/users" className="text-white font-bold">
-            Users
-          </Link>
-        </li>
+        {role === "admin" ? (
+          <li>
+            <Link to="/users" className="text-white font-bold">
+              Users
+            </Link>
+          </li>
+        ) : null}
         <li>
           <Link to="/help" className="text-white font-bold">
             Help
