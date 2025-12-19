@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import usersData from "../data/users.json";
 
 const AuthContext = createContext(null);
+const USERS_STORAGE_KEY = "users";
 
 // Authentication based on local JSON data, insecure, but enough
 // Is a context, that mean that you can acces the user everywere
@@ -10,6 +11,14 @@ export function AuthProvider({ children }) {
     if (typeof window === "undefined") return null;
     const stored = localStorage.getItem("authUser");
     return stored ? JSON.parse(stored) : null;
+  });
+
+  const [users, setUsers] = useState(() => {
+    if (typeof window === "undefined") return usersData.users || [];
+    const stored = localStorage.getItem(USERS_STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersData.users || []));
+    return usersData.users || [];
   });
 
   useEffect(() => {
@@ -21,10 +30,15 @@ export function AuthProvider({ children }) {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+  }, [users]);
+
   const login = (identifier, password) => {
     const normalizedId = identifier.trim().toLowerCase();
 
-    const match = usersData.users.find((candidate) => {
+    const match = users.find((candidate) => {
       const { username, email, name } = candidate;
       return (
         username?.toLowerCase() === normalizedId ||
@@ -60,10 +74,12 @@ export function AuthProvider({ children }) {
       user,
       login,
       logout,
+      users,
+      setUsers,
       isAuthenticated: Boolean(user),
       role: user?.role || null,
     }),
-    [user]
+    [user, users]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
