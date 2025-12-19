@@ -8,10 +8,14 @@ Tailwind, and maybe, theme based
 - @GRDinculescu you decide
 
 ## To deploy
->> npm run build 
->> npm run deploy
+> npm run build
 
-(vvv React jerg that idk if it will be used vvv)
+> npm run deploy
+
+## Public page:
+https://grdinculescu.github.io/ManageMe_React/#/
+
+## (vvv React jerg that idk if it will be used vvv)
 
 # React + Vite
 
