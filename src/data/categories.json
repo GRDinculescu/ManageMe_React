@@ -107,7 +107,8 @@
         },
         {
           "id": 602,
-          "name": "Muñecas"
+          "name": "Muñecas",
+      "imgSrc": "/src/assets/jueguetes/muñecos.jpg"
         },
         {
           "id": 603,
@@ -140,7 +141,8 @@
     },
     {
       "id": 9,
-      "name": "Automóviles"
+      "name": "Automóviles",
+      "imgSrc": "/src/assets/coche.jpg"
     },
     {
       "id": 10,
