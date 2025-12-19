@@ -15,7 +15,7 @@ export default function Subcategory ({subcat, onClick}) {
             className="cursor-pointer flex flex-col text-center bg-slate-600 hover:bg-slate-500 transition duration-200 w-full h-full"
             onClick={() => onClick(subcat)}
         >
-            <img src={subcat.imgSrc} alt={`${subcat.name}`} title={`${subcat.name}`} 
+            <img src={`${import.meta.env.BASE_URL}${subcat.imgSrc}`} alt={`${subcat.name}`} title={`${subcat.name}`} 
                 className={`${exist ? "" : "hidden"} w-full h-full object-cover`}
             />
             <p className={`${exist ? "hidden" : ""} my-auto`}>{subcat.name}</p>

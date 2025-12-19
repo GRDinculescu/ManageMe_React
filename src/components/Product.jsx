@@ -23,7 +23,7 @@ export default function Product ({...prod}) {
 
     return (
         <div className='flex py-5 px-5 h-30 text-md'>
-            <img src={`${exist ? prod.imgSrc : "/src/assets/noimage.jpg"}`} alt="" className='rounded-2xl aspect-square object-cover'/>
+            <img src={`${exist ? `${import.meta.env.BASE_URL}${prod.imgSrc}` : `${import.meta.env.BASE_URL}img/noimage.jpg`}`} alt="" className='rounded-2xl aspect-square object-cover'/>
             <div className='flex flex-col mx-5 mr-7.5 flex-14'>
                 <div className='flex justify-between mb-2.5 font-bold uppercase'>
                     <p className='truncate max-w-[60%]'>{prod.name}</p>

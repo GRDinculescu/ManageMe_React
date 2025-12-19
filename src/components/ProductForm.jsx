@@ -66,7 +66,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
     setDescription(product?.description ?? "");
     setSupplierId(product?.supplierId ?? 0);
     setPurchasable(product?.purchasable ?? false);
-    setImg(product?.imgSrc ?? "/src/assets/noimage.jpg");
+    setImg(product?.imgSrc ?? `${import.meta.env.BASE_URL}img/noimage.jpg`);
     setCategoryId(product?.categoryId ?? 0);
     setSubcategoryId(product?.subcategoryId ?? 0);
     setBrandId(product?.brandId ?? 0);
