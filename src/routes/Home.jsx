@@ -10,7 +10,13 @@ import Subcategory from "../components/Subcategory";
 import categoriesData from "../data/categories.json";
 import productsData from "../data/products.json";
 
+import { useAuth } from "../context/AuthContext";
+import ClientProductForm from "../components/ClientProductForm";
+
 export default function Home() {
+    const { role } = useAuth() || {};
+    const isClient = role === "client";
+    
     const [showFilters, setShowFilters] = useState(false);
 
     const categories = categoriesData.categories;
@@ -128,7 +134,7 @@ export default function Home() {
                     {/* Filtros y categorias */}
                     <div className="flex-1 flex flex-col gap-2 px-5 py-5 rounded-tr-2xl bg-gray-800 h-full">
                         {/* Filtros */}
-                        <div className="flex gap-5 py-2 px-3 bg-gray-700 rounded-xl w-full h-max">
+                        <div className="flex gap-5 py-2 px-3 min-w-105 bg-gray-700 rounded-xl w-full h-max">
                             <button type="button"
                                 className="cursor-pointer justify-self-start bg-sky-700 hover:bg-sky-600 transition duration-300 py-1 rounded-lg font-bold min-w-40"
                                 onClick={() => setShowFilters(!showFilters)}>
@@ -141,7 +147,7 @@ export default function Home() {
                                 onChange={(e) => setSearchText(e.target.value)}
                             />
                             <button type="button" onClick={openCreate}
-                                className="cursor-pointer justify-self-end bg-green-600 hover:bg-green-500 transition duration-300 px-2.5 rounded-lg font-bold">
+                                className={`${role === "client" ? "hidden" : ""} cursor-pointer justify-self-end bg-green-600 hover:bg-green-500 transition duration-300 px-2.5 rounded-lg font-bold`}>
                                 +
                             </button>
                         </div>
@@ -217,25 +223,38 @@ export default function Home() {
 
                     {/* Ventana modal */}
                     <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                        <ProductForm
-                            mode={mode}
-                            product={selectedProduct}
-                            onSubmit={(data) => {
-                                if (mode === "edit") {
+                        {isClient ? (
+                            // Formulario simplificado para clientes
+                            <ClientProductForm
+                                product={selectedProduct}
+                                onSubmit={(data) => {
                                     handleEditProduct(data);
-                                } else {
-                                    data.id = products[products.length - 1].id + 1;
-                                    handleCreateProduct(data);
-                                }
-                                setIsOpen(false);
-                            }}
-                            onDelete={() => {
-                                if (selectedProduct?.id) {
-                                    handleDeleteProduct(selectedProduct.id);
                                     setIsOpen(false);
-                                }
-                            }}
-                        />
+                                }}
+                                onClose={() => setIsOpen(false)}
+                            />
+                        ) : (
+                            // Formulario completo para admin
+                            <ProductForm
+                                mode={mode}
+                                product={selectedProduct}
+                                onSubmit={(data) => {
+                                    if (mode === "edit") {
+                                        handleEditProduct(data);
+                                    } else {
+                                        data.id = products[products.length - 1].id + 1;
+                                        handleCreateProduct(data);
+                                    }
+                                    setIsOpen(false);
+                                }}
+                                onDelete={() => {
+                                    if (selectedProduct?.id) {
+                                        handleDeleteProduct(selectedProduct.id);
+                                        setIsOpen(false);
+                                    }
+                                }}
+                            />
+                        )}
                     </Modal>
                 </div>
             </Layout>
