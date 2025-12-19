@@ -5,12 +5,13 @@ import Users from './routes/Users';
 import Login from './routes/Login';
 import Product from './components/Product';
 import { AuthProvider } from './context/AuthContext';
+import { HashRouter } from 'react-router-dom'
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -21,7 +22,7 @@ function App() {
             <Route path="product" element={<Product />} />
           </Routes>
         </AuthProvider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
