@@ -26,9 +26,9 @@ export default function Home() {
         setIsOpen(true);
     };
 
-    const openEdit = (product) => {
+    const openEdit = (...product) => {
         setMode("edit");
-        setSelectedProduct(product);
+        setSelectedProduct(...product);
         setIsOpen(true);
     };
 
@@ -72,7 +72,7 @@ export default function Home() {
                     <div className="flex-10 flex flex-wrap gap-5 p-5 min-w-135 bg-gray-700 rounded-t-2xl h-full overflow-y-auto">
                         {products.map((prod) => (
                             <div key={prod.id} className="flex-1"
-                            onClick={() => openEdit({ prod })}>
+                            onClick={() => openEdit({ ...prod })}>
                                 <Product {...prod}/>
                             </div>
                         ))}
