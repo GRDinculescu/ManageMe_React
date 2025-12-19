@@ -1,10 +1,24 @@
+import { useState, useEffect } from "react";
+
 export default function Subcategory ({subcat, onClick}) {
+    const [exist, setExist] = useState(true);
+
+    useEffect(() => {
+        const img = new Image();
+        img.onload = () => setExist(true);
+        img.onerror = () => setExist(false);
+        img.src = subcat.imgSrc;
+    }, [subcat.imgSrc]);
+
     return (
         <div 
-            className="cursor-pointer flex items-center justify-center text-center bg-slate-600 hover:bg-slate-500 transition duration-200 w-full h-full rounded-2xl p-4"
+            className="cursor-pointer flex flex-col text-center bg-slate-600 hover:bg-slate-500 transition duration-200 w-full h-full"
             onClick={() => onClick(subcat)}
         >
-            <p className="font-semibold text-lg">{subcat.name}</p>
+            <img src={subcat.imgSrc} alt={`${subcat.name}`} title={`${subcat.name}`} 
+                className={`${exist ? "" : "hidden"} w-full h-full object-cover`}
+            />
+            <p className={`${exist ? "hidden" : ""} my-auto`}>{subcat.name}</p>
         </div>
     );
 }

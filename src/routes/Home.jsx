@@ -147,7 +147,7 @@ export default function Home() {
                                 onChange={(e) => setSearchText(e.target.value)}
                             />
                             <button type="button" onClick={openCreate}
-                                className={`${role === "client" ? "hidden" : ""} cursor-pointer justify-self-end bg-green-600 hover:bg-green-500 transition duration-300 px-2.5 rounded-lg font-bold`}>
+                                className={`${isClient ? "hidden" : ""} cursor-pointer justify-self-end bg-green-600 hover:bg-green-500 transition duration-300 px-2.5 rounded-lg font-bold`}>
                                 +
                             </button>
                         </div>
