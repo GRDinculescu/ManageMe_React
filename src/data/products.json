@@ -14,7 +14,7 @@
       "subcategory": "Smartphones",
       "subcategoryId": 101,
       "purchasable": true,
-      "imgSrc": "/src/assets/smartphone-x12.jpg"
+      "imgSrc": "img/smartphone-x12.jpg"
     },
     {
       "id": 2,
@@ -30,7 +30,7 @@
       "subcategory": "Portátiles",
       "subcategoryId": 102,
       "purchasable": true,
-      "imgSrc": "/src/assets/laptop-pro15.jpg"
+      "imgSrc": "img/laptop-pro15.jpg"
     },
     {
       "id": 3,
@@ -61,7 +61,7 @@
       "subcategory": "Calzado",
       "subcategoryId": 204,
       "purchasable": true,
-      "imgSrc": "/src/assets/zapatillas-running.jpg"
+      "imgSrc": "img/zapatillas-running.jpg"
     },
     {
       "id": 5,
@@ -77,7 +77,7 @@
       "subcategory": "Muebles",
       "subcategoryId": 301,
       "purchasable": true,
-      "imgSrc": "/src/assets/sofa-confort.jpg"
+      "imgSrc": "img/sofa-confort.jpg"
     },
     {
       "id": 6,
@@ -108,7 +108,7 @@
       "subcategory": "Ciclismo",
       "subcategoryId": 402,
       "purchasable": true,
-      "imgSrc": "/src/assets/bici-mountain.jpg"
+      "imgSrc": "img/bici-mountain.jpg"
     },
     {
       "id": 8,
@@ -152,7 +152,7 @@
       "subcategory": "Educativos",
       "subcategoryId": 601,
       "purchasable": true,
-      "imgSrc": "/src/assets/juego-educativo.jpg"
+      "imgSrc": "img/juego-educativo.jpg"
     },
     {
       "id": 11,
@@ -196,7 +196,7 @@
       "subcategory": "Maquillaje",
       "subcategoryId": 801,
       "purchasable": true,
-      "imgSrc": "/src/assets/maquillaje-pro.jpg"
+      "imgSrc": "img/maquillaje-pro.jpg"
     },
     {
       "id": 14,
@@ -238,7 +238,7 @@
       "category": "Mascotas",
       "categoryId": 10,
       "purchasable": true,
-      "imgSrc": "/src/assets/comida-perros.jpg"
+      "imgSrc": "img/comida-perros.jpg"
     },
     {
       "id": 17,
@@ -265,7 +265,7 @@
       "category": "Música e Instrumentos",
       "categoryId": 12,
       "purchasable": true,
-      "imgSrc": "/src/assets/guitara.png"
+      "imgSrc": "img/guitara.png"
     },
     {
       "id": 19,
@@ -305,7 +305,7 @@
       "supplierId": 3,
       "stock": 1,
       "categoryId": 10,
-      "imgSrc": "/src/assets/pes.webp",
+      "imgSrc": "img/pes.webp",
       "purchasable": false
     }
   ]
