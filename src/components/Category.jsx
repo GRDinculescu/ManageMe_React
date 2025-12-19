@@ -15,10 +15,7 @@ export default function Category ({cat, onClick}) {
             className="cursor-pointer flex flex-col text-center bg-slate-600 hover:bg-slate-500 transition duration-200 w-full h-full"
             onClick={() => onClick(cat)}
         >
-            <img 
-                src={cat.imgSrc} 
-                alt={`${cat.name}`} 
-                title={`${cat.name}`} 
+            <img src={cat.imgSrc} alt={`${cat.name}`} title={`${cat.name}`} 
                 className={`${exist ? "" : "hidden"} w-full h-full object-cover`}
             />
             <p className={`${exist ? "hidden" : ""} my-auto`}>{cat.name}</p>

@@ -7,11 +7,13 @@
       "subcategories": [
         {
           "id": 101,
-          "name": "Smartphones"
+          "name": "Smartphones",
+          "imgSrc": "/src/assets/moviles.jpg"
         },
         {
           "id": 102,
-          "name": "Portátiles"
+          "name": "Portátiles",
+          "imgSrc": "/src/assets/portatiles.jpeg"
         },
         {
           "id": 103,
@@ -26,15 +28,17 @@
     {
       "id": 2,
       "name": "Ropa y Moda",
-      "imgSrc": "/src/assets/ropa.jpg",
+      "imgSrc": "/src/assets/ropa.webp",
       "subcategories": [
         {
           "id": 201,
-          "name": "Hombre"
+          "name": "Hombre",
+          "imgSrc": "/src/assets/hombre.jpg"
         },
         {
           "id": 202,
-          "name": "Mujer"
+          "name": "Mujer",
+          "imgSrc": "/src/assets/mujer.jpg"
         },
         {
           "id": 203,
@@ -49,15 +53,17 @@
     {
       "id": 3,
       "name": "Hogar y Jardín",
-      "imgSrc": "/src/assets/hogar.jpg",
+      "imgSrc": "/src/assets/hogarjardin.webp",
       "subcategories": [
         {
           "id": 301,
-          "name": "Muebles"
+          "name": "Muebles",
+          "imgSrc": "/src/assets/muebles.webp"
         },
         {
           "id": 302,
-          "name": "Decoración"
+          "name": "Decoración",
+          "imgSrc": "/src/assets/decoracion.webp"
         },
         {
           "id": 303,
