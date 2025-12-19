@@ -7,6 +7,9 @@ Tailwind, and maybe, theme based
 ## Theme info:
 - @GRDinculescu you decide
 
+## To deploy
+>> npm run build 
+>> npm run deploy
 
 (vvv React jerg that idk if it will be used vvv)
 
