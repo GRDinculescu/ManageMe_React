@@ -32,7 +32,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
   const suppliers = Suppliers.suppliers;
   const categories = Categories.categories;
  
-  const [img, setImg] = useState("/src/assets/noimage.jpg");
+  const [img, setImg] = useState("img/noimage.jpg");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
@@ -54,7 +54,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
     setDescription(product?.description ?? "");
     setSupplierId(product?.supplierId ?? 0);
     setPurchasable(product?.purchasable ?? false);
-    setImg(product?.imgSrc ?? "/src/assets/noimage.jpg");
+    setImg(product?.imgSrc ?? `${import.meta.env.BASE_URL}img/noimage.jpg`);
     setCategoryId(product?.categoryId ?? 0);
     setSubcategoryId(product?.subcategoryId ?? 0);
     setBrandId(product?.brandId ?? 0);
@@ -88,7 +88,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
 
   // ✅ Función para eliminar la imagen
   const handleRemoveImage = () => {
-    setImg("/src/assets/noimage.jpg");
+    setImg("img/noimage.jpg");
   };
 
   const handleSubmit = (e) => {
@@ -140,7 +140,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
               Cambiar imagen
             </label>
             
-            {img !== "/src/assets/noimage.jpg" && (
+            {img !== "img/noimage.jpg" && (
               <button
                 type="button"
                 onClick={handleRemoveImage}

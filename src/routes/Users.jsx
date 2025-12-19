@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import Modal from "../components/Modal";
 import { useAuth } from "../context/AuthContext";
@@ -132,7 +133,7 @@ function UserForm({ mode, user, onSubmit, onDelete, onClose }) {
 }
 
 export default function Users() {
-  const { users, setUsers } = useAuth();
+  const { user, role, users, setUsers } = useAuth();
   const [searchText, setSearchText] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState("create");
@@ -182,6 +183,10 @@ export default function Users() {
     setUsers((prev) => prev.filter((candidate) => candidate.id !== userToDelete.id));
     setIsOpen(false);
   };
+
+  if (role !== "admin") {
+    return <Navigate to="/home" replace />;
+  }
 
   return (
     <>

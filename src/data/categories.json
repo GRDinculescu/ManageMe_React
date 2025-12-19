@@ -3,22 +3,22 @@
     {
       "id": 1,
       "name": "Electrónica",
-      "imgSrc": "/src/assets/electronica/electronica.jpg",
+      "imgSrc": "img/electronica/electronica.jpg",
       "subcategories": [
         {
           "id": 101,
           "name": "Smartphones",
-          "imgSrc": "/src/assets/electronica/telefono.webp"
+          "imgSrc": "img/electronica/telefono.webp"
         },
         {
           "id": 102,
           "name": "Portátiles",
-          "imgSrc": "/src/assets/electronica/portatiles.jpg"
+          "imgSrc": "img/electronica/portatiles.jpg"
         },
         {
           "id": 103,
           "name": "Tablets",
-          "imgSrc": "/src/assets/electronica/tablet.jpeg"
+          "imgSrc": "img/electronica/tablet.jpeg"
         },
         {
           "id": 104,
@@ -29,22 +29,22 @@
     {
       "id": 2,
       "name": "Ropa y Moda",
-      "imgSrc": "/src/assets/ropa/ropa.webp",
+      "imgSrc": "img/ropa/ropa.webp",
       "subcategories": [
         {
           "id": 201,
           "name": "Hombre",
-          "imgSrc": "/src/assets/ropa/hombre.jpg"
+          "imgSrc": "img/ropa/hombre.jpg"
         },
         {
           "id": 202,
           "name": "Mujer",
-          "imgSrc": "/src/assets/ropa/mujer.jpg"
+          "imgSrc": "img/ropa/mujer.jpg"
         },
         {
           "id": 203,
           "name": "Niños",
-          "imgSrc": "/src/assets/ropa/nuño.webp"
+          "imgSrc": "img/ropa/nuño.webp"
         },
         {
           "id": 204,
@@ -55,17 +55,17 @@
     {
       "id": 3,
       "name": "Hogar y Jardín",
-      "imgSrc": "/src/assets/hogar/hogarjardin.webp",
+      "imgSrc": "img/hogarjardin.webp",
       "subcategories": [
         {
           "id": 301,
           "name": "Muebles",
-          "imgSrc": "/src/assets/hogar/muebles.webp"
+          "imgSrc": "img/muebles.webp"
         },
         {
           "id": 302,
           "name": "Decoración",
-          "imgSrc": "/src/assets/hogar/decoracion.webp"
+          "imgSrc": "img/decoracion.webp"
         },
         {
           "id": 303,
@@ -76,7 +76,7 @@
     {
       "id": 4,
       "name": "Deportes",
-      "imgSrc": "/src/assets/deportes.jpg",
+      "imgSrc": "img/deportes.jpg",
       "subcategories": [
         {
           "id": 401,
@@ -99,7 +99,7 @@
     {
       "id": 6,
       "name": "Juguetes",
-      "imgSrc": "/src/assets/jueguetes/jugetes.webp",
+      "imgSrc": "img/juguetes.jpg",
       "subcategories": [
         {
           "id": 601,
@@ -123,7 +123,7 @@
     {
       "id": 8,
       "name": "Belleza y Cuidado Personal",
-      "imgSrc": "/src/assets/belleza.jpg",
+      "imgSrc": "img/belleza.jpg",
       "subcategories": [
         {
           "id": 801,
@@ -147,7 +147,7 @@
     {
       "id": 10,
       "name": "Mascotas",
-      "imgSrc": "/src/assets/pes.webp"
+      "imgSrc": "img/pes.webp"
     },
     {
       "id": 11,
@@ -156,7 +156,7 @@
     {
       "id": 12,
       "name": "Música e Instrumentos",
-      "imgSrc": "/src/assets/musica.jpg"
+      "imgSrc": "img/musica.jpg"
     }
   ]
 }
