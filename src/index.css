@@ -19,7 +19,7 @@ body, html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/* Theme that we don't use */
 @theme {
 	--color-text: #000;
 	--color-system-text: #808080;
