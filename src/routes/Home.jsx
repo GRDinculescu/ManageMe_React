@@ -8,7 +8,6 @@ import Filters from "../components/Filters";
 import Category from "../components/Category";
 import Subcategory from "../components/Subcategory";
 import categoriesData from "../data/categories.json";
-import productsData from "../data/products.json";
 
 import { useAuth } from "../context/AuthContext";
 import ClientProductForm from "../components/ClientProductForm";
@@ -20,7 +19,7 @@ export default function Home() {
     const [showFilters, setShowFilters] = useState(false);
 
     const categories = categoriesData.categories;
-    const [products, setProducts] = useState(productsData.products || []);
+    const {products, setProducts} = useAuth();
     const [searchText, setSearchText] = useState("");
     const [filters, setFilters] = useState({});
 
@@ -153,7 +152,7 @@ export default function Home() {
                         </div>
                         <div className="h-full">
                             {/* Categorias */}
-                            <div className={`${showFilters ? "hidden" : "flex"} flex-col gap-3 p-3 bg-gray-700 rounded-2xl h-full overflow-y-auto`}>
+                            <div className={`${showFilters ? "hidden" : "flex"} flex-col gap-3 p-3 bg-gray-700 rounded-2xl h-full overflow-y-auto pb-12`}>
                                 {/* Botón de volver */}
                                 {(selectedCategory || selectedSubcategory) && (
                                     <button

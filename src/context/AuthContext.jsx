@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import usersData from "../data/users.json";
+import productsData from "../data/products.json";
 
 const AuthContext = createContext(null);
 const USERS_STORAGE_KEY = "users";
+const PRODUCTS_STORAGE_KEY = "products";
 
 // Authentication based on local JSON data, insecure, but enough
 // Is a context, that mean that you can acces the user everywere
@@ -21,6 +23,14 @@ export function AuthProvider({ children }) {
     return usersData.users || [];
   });
 
+  const [products, setProducts] = useState(() => {
+    if (typeof window === "undefined") return productsData.products || [];
+    const stored = localStorage.getItem(PRODUCTS_STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+    localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(productsData.products || []));
+    return productsData.products || [];
+  });
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (user) {
@@ -34,6 +44,11 @@ export function AuthProvider({ children }) {
     if (typeof window === "undefined") return;
     localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
   }, [users]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(products));
+  }, [products]);
 
   const login = (identifier, password) => {
     const normalizedId = identifier.trim().toLowerCase();
@@ -75,11 +90,13 @@ export function AuthProvider({ children }) {
       login,
       logout,
       users,
+      products,
       setUsers,
+      setProducts,
       isAuthenticated: Boolean(user),
       role: user?.role || null,
     }),
-    [user, users]
+    [user, users, products]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

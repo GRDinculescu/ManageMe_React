@@ -55,17 +55,17 @@
     {
       "id": 3,
       "name": "Hogar y Jardín",
-      "imgSrc": "/src/assets/hogarjardin.webp",
+      "imgSrc": "/src/assets/hogar/hogarjardin.webp",
       "subcategories": [
         {
           "id": 301,
           "name": "Muebles",
-          "imgSrc": "/src/assets/muebles.webp"
+          "imgSrc": "/src/assets/hogar/muebles.webp"
         },
         {
           "id": 302,
           "name": "Decoración",
-          "imgSrc": "/src/assets/decoracion.webp"
+          "imgSrc": "/src/assets/hogar/decoracion.webp"
         },
         {
           "id": 303,
@@ -99,7 +99,7 @@
     {
       "id": 6,
       "name": "Juguetes",
-      "imgSrc": "/src/assets/juguetes.jpg",
+      "imgSrc": "/src/assets/jueguetes/jugetes.webp",
       "subcategories": [
         {
           "id": 601,
@@ -107,7 +107,8 @@
         },
         {
           "id": 602,
-          "name": "Muñecas"
+          "name": "Muñecas",
+      "imgSrc": "/src/assets/jueguetes/muñecos.jpg"
         },
         {
           "id": 603,
@@ -140,7 +141,8 @@
     },
     {
       "id": 9,
-      "name": "Automóviles"
+      "name": "Automóviles",
+      "imgSrc": "/src/assets/coche.jpg"
     },
     {
       "id": 10,
