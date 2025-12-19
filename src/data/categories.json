@@ -3,21 +3,22 @@
     {
       "id": 1,
       "name": "Electrónica",
-      "imgSrc": "/src/assets/electronica.jpg",
+      "imgSrc": "/src/assets/electronica/electronica.jpg",
       "subcategories": [
         {
           "id": 101,
           "name": "Smartphones",
-          "imgSrc": "/src/assets/moviles.jpg"
+          "imgSrc": "/src/assets/electronica/telefono.webp"
         },
         {
           "id": 102,
           "name": "Portátiles",
-          "imgSrc": "/src/assets/portatiles.jpeg"
+          "imgSrc": "/src/assets/electronica/portatiles.jpg"
         },
         {
           "id": 103,
-          "name": "Tablets"
+          "name": "Tablets",
+          "imgSrc": "/src/assets/electronica/tablet.jpeg"
         },
         {
           "id": 104,
@@ -28,21 +29,22 @@
     {
       "id": 2,
       "name": "Ropa y Moda",
-      "imgSrc": "/src/assets/ropa.webp",
+      "imgSrc": "/src/assets/ropa/ropa.webp",
       "subcategories": [
         {
           "id": 201,
           "name": "Hombre",
-          "imgSrc": "/src/assets/hombre.jpg"
+          "imgSrc": "/src/assets/ropa/hombre.jpg"
         },
         {
           "id": 202,
           "name": "Mujer",
-          "imgSrc": "/src/assets/mujer.jpg"
+          "imgSrc": "/src/assets/ropa/mujer.jpg"
         },
         {
           "id": 203,
-          "name": "Niños"
+          "name": "Niños",
+          "imgSrc": "/src/assets/ropa/nuño.webp"
         },
         {
           "id": 204,
