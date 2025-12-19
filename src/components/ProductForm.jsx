@@ -32,39 +32,55 @@ function ConfirmModal({ onConfirm, onClose }) {
 
 
 export default function ProductForm({ mode, product, onSubmit, onDelete, onClose }) {
-  const [name, setName] = React.useState(product?.name || "");
-  const [price, setPrice] = React.useState(product?.price || "");
-  useEffect(() => {
-    if (!product) return;
-
-    setName(product?.name || "");
-    setPrice(product?.price || "");
-    setSelectedCategoryId(product?.categoryId || null);
-    setSelectedBrandId(product?.brandId || "");
-  }, [product]);
-
-  const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
-
-  const isEdit = mode === "edit";
-
+  // Cargar datos de marcas, proveedores y categorías
   const brands = Brands.brands;
   const suppliers = Suppliers.suppliers;
   const categories = Categories.categories;
-  
-  const [selectedBrandId, setSelectedBrandId] = useState("");
+ 
+  // Estados para los campos del formulario
+  const [img, setImg] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [description, setDescription] = useState("");
+  const [supplierId, setSupplierId] = useState(0);
+  const [purchasable, setPurchasable] = useState(false);
+  const [categoryId, setCategoryId] = useState(0);
+  const [subcategoryId, setSubcategoryId] = useState(0);
+  const [brandId, setBrandId] = useState(0);
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const selectedCategory = categories.find(cat => cat.id === selectedCategoryId);
+  // Obtener las subcategorías de la categoría seleccionada
+  const selectedCategory = categories.find(cat => cat.id === categoryId);
 
+  // Estado para controlar la visibilidad del modal de confirmación
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
+  // Verificar si estamos en modo edición
+  const isEdit = mode === "edit";  
+
+  // Rellenar los campos del formulario si estamos en modo edición
+  useEffect(() => {
+    setName(product?.name ?? "");
+    setPrice(product?.price ?? "");
+    setStock(product?.stock ?? "");
+    setDescription(product?.description ?? "");
+    setSupplierId(product?.supplierId ?? 0);
+    setPurchasable(product?.purchasable ?? false);
+    setImg(product?.imgSrc ?? "");
+    setCategoryId(product?.categoryId ?? 0);
+    setSubcategoryId(product?.subcategoryId ?? 0);
+    setBrandId(product?.brandId ?? 0);
+  }, [product]);
+
+  // Manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({
-      ...product,
-      name,
-      price,
+      product,
     });
   };
 
+  // Manejar la eliminación del producto
   const handleDelete = () => {
     onDelete(product);
     setIsConfirmOpen(false);
@@ -76,66 +92,82 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
         {isEdit ? "Editar producto" : "Nuevo producto"}
       </h2>
 
+      {/* Formulario */}
       <div className="flex justify-center">
-        <img src="/src/assets/face.png" alt="" className="w-25"/>
+        <img src={img} alt="" className="w-25"/>
+
+
+        {/* Linea 1 */}
         <div className="flex flex-col justify-center ml-4 gap-5">
           <div className="flex gap-5">
+            {/* Nombre */}
             <div>
               <label htmlFor="nombre">Nombre</label>
-              <input 
-                type="text" 
-                id="nombre" 
-                name="nombre" 
+              <input type="text" id="nombre" name="nombre" className="ml-2 p-1 rounded bg-gray-700"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="ml-2 p-1 rounded bg-gray-700"
-              />
+                onChange={(e) => setName(e.target.value)}/>
             </div>
+
+            {/* Precio */}
             <div>
               <label htmlFor="precio">Precio</label>
-              <input 
-                type="number" 
-                id="precio" 
-                name="precio" 
+              <input type="number" id="precio" name="precio" className="ml-2 p-1 rounded bg-gray-700"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                className="ml-2 p-1 rounded bg-gray-700"
-              />
+                onChange={(e) => setPrice(e.target.value)}/>
             </div>
+            
+            {/* Cantidad */}
             <div>
               <label htmlFor="cantidad">Cantidad</label>
-              <input type="number" id="cantidad" name="cantidad" className="ml-2 p-1 rounded bg-gray-700"/>
+              <input type="number" id="cantidad" name="cantidad" className="ml-2 p-1 rounded bg-gray-700"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}/>
             </div>
           </div>
+
+
+          {/* Linea 2 */}
           <div className="flex gap-5 items-center">
+            {/* Descripcion */}
             <div>
               <label htmlFor="descripcion">Descripción</label>
-              <input type="text" id="descripcion" name="descripcion" className="ml-2 p-1 rounded bg-gray-700"/>
+              <input type="text" id="descripcion" name="descripcion" className="ml-2 p-1 rounded bg-gray-700"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}/>
             </div>
+
+            {/* Proveedor */}
             <div>
               <label htmlFor="proveedor">Proveedor</label>
-              <select name="proveedor" id="proveedor" className="ml-2 p-1 rounded bg-gray-700">
-                <option value="">Seleccionar proveedor</option>
-                {
-                    suppliers.map((supplier) => (
-                        <option key={supplier.id} value="">{supplier.name}</option>
-                    ))
-                }
+              <select name="proveedor" id="proveedor" className="ml-2 p-1 rounded bg-gray-700"
+                value={supplierId || ""}
+                onChange={(e) => setSupplierId(e.target.value)}>
+                { suppliers.map((supplier) => (
+                  <option key={supplier.id} value={supplier.id}>{supplier.name}</option>
+                )) }
               </select>
             </div>
+            
+            {/* Es comprable */}
             <div>
-              <input className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" type="checkbox" name="comprable" id="comprable" />
+              <input className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" type="checkbox" name="comprable" id="comprable"
+                checked={purchasable}
+                onChange={(e) => setPurchasable(e.target.value)}/>
               <label className="ml-3" htmlFor="comprable">Comprable</label>
             </div>
           </div>
         </div>
       </div>
+
+
+      {/* Linea 3 */}
       <div className="flex gap-5">
+        {/* Categoria */}
         <div>
           <label htmlFor="categoria">Categoria</label>
           <select name="categoria" id="categoria" className="ml-2 p-1 rounded bg-gray-700"
-            onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
-            value={selectedCategoryId || ""}>
+            value={categoryId || ""}
+            onChange={(e) => setCategoryId(Number(e.target.value))}>
             {
               categories.map((category) => (
                   <option key={category.id} value={category.id}>{category.name}</option>
@@ -143,9 +175,13 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
             }
           </select>
         </div>
+
+        {/* Sub-Categoria */}
         <div>
           <label htmlFor="subcategoria">Sub-Categoria</label>
-          <select name="subcategoria" id="subcategoria" className="ml-2 p-1 rounded bg-gray-700">
+          <select name="subcategoria" id="subcategoria" className="ml-2 p-1 rounded bg-gray-700"
+            value={subcategoryId || ""}
+            onChange={(e) => setSubcategoryId(Number(e.target.value))}>
             {
               selectedCategory?.subcategories?.map(subcat => (
                   <option key={subcat.id} value={subcat.id}>{subcat.name}</option>
@@ -153,21 +189,25 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
             }
           </select>
         </div>
+
+        {/* Marca */}
         <div>
           <label htmlFor="marca">Marca</label>
-          <select name="marca" id="marca" value={`${product.brand}`} className="ml-2 p-1 rounded bg-gray-700"
-            onChange={(e) => setSelectedBrandId(Number(e.target.value))}>
-            <option value="">Seleccionar marca</option>
+          <select name="marca" id="marca" className="ml-2 p-1 rounded bg-gray-700"
+            value={brandId || ""}
+            onChange={(e) => setBrandId(Number(e.target.value))}>
             {
-                brands.map((brand) => (
-                    <option key={brand.id} value="">{brand.name}</option>
-                ))
+              brands.map((brand) => (
+                  <option key={brand.id} value={brand.id}>{brand.name}</option>
+              ))
             }
           </select>
         </div>
       </div>
+
+      {/* Botones */}
       <div className="flex justify-between mt-4 mr-5">
-        <button
+        <button // Guardar cambios / Crear producto
           type="submit"
           className={`p-2 rounded font-bold ${
             isEdit ? "bg-sky-600" : "bg-green-600"
@@ -177,15 +217,13 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
         </button>
 
         <div className="flex gap-5">
-          {isEdit && (
-            <button
-              type="button"
-              onClick={() => setIsConfirmOpen(true)}
-              className="p-2 rounded font-bold bg-red-600 hover:bg-red-500"
-            >
-              Borrar
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setIsConfirmOpen(true)}
+            className={`${isEdit ? "" : "hidden"} p-2 rounded font-bold bg-red-600 hover:bg-red-500`}
+          >
+            Borrar
+          </button>
 
           <button
             type="button"
