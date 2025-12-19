@@ -4,20 +4,23 @@ import Help from './routes/Help';
 import Users from './routes/Users';
 import Login from './routes/Login';
 import Product from './components/Product';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="help" element={<Help />} />
-          <Route path="users" element={<Users />} />
-          <Route path="login" element={<Login />} />
-          <Route path="product" element={<Product />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="help" element={<Help />} />
+            <Route path="users" element={<Users />} />
+            <Route path="login" element={<Login />} />
+            <Route path="product" element={<Product />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
