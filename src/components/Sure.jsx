@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ProductForm({ onSubmit, onDelete, onClose }) {
   const isEdit = mode === "edit";
 

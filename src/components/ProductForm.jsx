@@ -1,5 +1,10 @@
+import { useState, useEffect } from "react";
 import React from "react";
 import Modal from "./Modal";
+import Brands from "../data/brands.json";
+import Suppliers from "../data/suppliers.json";
+import Categories from "../data/categories.json";
+
 function ConfirmModal({ onConfirm, onClose }) {
   return (
     <div className="flex flex-col gap-4">
@@ -29,9 +34,27 @@ function ConfirmModal({ onConfirm, onClose }) {
 export default function ProductForm({ mode, product, onSubmit, onDelete, onClose }) {
   const [name, setName] = React.useState(product?.name || "");
   const [price, setPrice] = React.useState(product?.price || "");
+  useEffect(() => {
+    if (!product) return;
+
+    setName(product?.name || "");
+    setPrice(product?.price || "");
+    setSelectedCategoryId(product?.categoryId || null);
+    setSelectedBrandId(product?.brandId || "");
+  }, [product]);
+
   const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
 
   const isEdit = mode === "edit";
+
+  const brands = Brands.brands;
+  const suppliers = Suppliers.suppliers;
+  const categories = Categories.categories;
+  
+  const [selectedBrandId, setSelectedBrandId] = useState("");
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const selectedCategory = categories.find(cat => cat.id === selectedCategoryId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,8 +116,11 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
               <label htmlFor="proveedor">Proveedor</label>
               <select name="proveedor" id="proveedor" className="ml-2 p-1 rounded bg-gray-700">
                 <option value="">Seleccionar proveedor</option>
-                <option value="Proveedor A">Proveedor A</option>
-                <option value="Proveedor B">Proveedor B</option>
+                {
+                    suppliers.map((supplier) => (
+                        <option key={supplier.id} value="">{supplier.name}</option>
+                    ))
+                }
               </select>
             </div>
             <div>
@@ -107,27 +133,36 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
       <div className="flex gap-5">
         <div>
           <label htmlFor="categoria">Categoria</label>
-          <select name="categoria" id="categoria" className="ml-2 p-1 rounded bg-gray-700">
-            <option value="">Seleccionar categoria</option>
-            <option value="Electrónica">Electrónica</option>
-            <option value="Ropa">Ropa</option>
-            <option value="Hogar">Hogar</option>
+          <select name="categoria" id="categoria" className="ml-2 p-1 rounded bg-gray-700"
+            onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
+            value={selectedCategoryId || ""}>
+            {
+              categories.map((category) => (
+                  <option key={category.id} value={category.id}>{category.name}</option>
+              ))
+            }
           </select>
         </div>
         <div>
           <label htmlFor="subcategoria">Sub-Categoria</label>
           <select name="subcategoria" id="subcategoria" className="ml-2 p-1 rounded bg-gray-700">
-            <option value="">Seleccionar sub-categoria</option>
-            <option value="Sub-Categoria 1">Sub-Categoria 1</option>
-            <option value="Sub-Categoria 2">Sub-Categoria 2</option>
+            {
+              selectedCategory?.subcategories?.map(subcat => (
+                  <option key={subcat.id} value={subcat.id}>{subcat.name}</option>
+              ))
+            }
           </select>
         </div>
         <div>
           <label htmlFor="marca">Marca</label>
-          <select name="marca" id="marca" className="ml-2 p-1 rounded bg-gray-700">
+          <select name="marca" id="marca" value={`${product.brand}`} className="ml-2 p-1 rounded bg-gray-700"
+            onChange={(e) => setSelectedBrandId(Number(e.target.value))}>
             <option value="">Seleccionar marca</option>
-            <option value="Marca A">Marca A</option>
-            <option value="Marca B">Marca B</option>
+            {
+                brands.map((brand) => (
+                    <option key={brand.id} value="">{brand.name}</option>
+                ))
+            }
           </select>
         </div>
       </div>

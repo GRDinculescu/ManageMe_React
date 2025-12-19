@@ -1,4 +1,16 @@
+import Brands from "../data/brands.json";
+import Suppliers from "../data/suppliers.json";
+import Categories from "../data/categories.json";
+import { useState } from "react";
+
 export default function Filters () {
+    const brands = Brands.brands;
+    const suppliers = Suppliers.suppliers;
+    const categories = Categories.categories;
+    
+    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+    const selectedCategory = categories.find(cat => cat.id === selectedCategoryId);
+
     return (
         <div className="flex flex-col gap-2 justify-between text-center w-full h-full rounded-2xl overflow-hidden">
             <div className="flex-1 bg-gray-500 p-3 flex flex-col gap-5">
@@ -10,17 +22,21 @@ export default function Filters () {
                 <div className="flex">
                     <label htmlFor="marca" className="font-bold">MARCA</label>
                     <select className="ml-5 bg-sky-100 text-black rounded-md" name="" id="marca">
-                        <option value="">Marca 1</option>
-                        <option value="">Marca 2</option>
-                        <option value="">Marca 3</option>
+                        {
+                            brands.map((brand) => (
+                                <option key={brand.id} value="">{brand.name}</option>
+                            ))
+                        }
                     </select>
                 </div>
                 <div className="flex">
                     <label htmlFor="proveedor" className="font-bold">PROVEEDOR</label>
                     <select className="ml-5 bg-sky-100 text-black rounded-md" name="" id="proveedor">
-                        <option value="">Proveedor 1</option>
-                        <option value="">Proveedor 2</option>
-                        <option value="">Proveedor 3</option>
+                        {
+                            suppliers.map((supplier) => (
+                                <option key={supplier.id} value="">{supplier.name}</option>
+                            ))
+                        }
                     </select>
                 </div>
             </div>
@@ -32,18 +48,25 @@ export default function Filters () {
                 </div>
                 <div className="flex">
                     <label htmlFor="categoria" className="font-bold">CATEGORIA</label>
-                    <select className="ml-5 bg-sky-100 text-black rounded-md" name="" id="categoria">
-                        <option value="">Categoria 1</option>
-                        <option value="">Categoria 2</option>
-                        <option value="">Categoria 3</option>
+                    <select
+                        className="ml-5 bg-sky-100 text-black rounded-md" name="" id="categoria"
+                        onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
+                        value={selectedCategoryId || ""}>
+                        {
+                            categories.map((category) => (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                            ))
+                        }
                     </select>
                 </div>
                 <div className="flex">
                     <label htmlFor="subcategoria" className="font-bold">SUB-CATEGORIA</label>
                     <select className="ml-5 bg-sky-100 text-black rounded-md" name="" id="subcategoria">
-                        <option value="">Subcategoria 1</option>
-                        <option value="">Subcategoria 2</option>
-                        <option value="">Subcategoria 3</option>
+                        {
+                            selectedCategory?.subcategories?.map(subcat => (
+                                <option key={subcat.id} value={subcat.id}>{subcat.name}</option>
+                            ))
+                        }
                     </select>
                 </div>
             </div>

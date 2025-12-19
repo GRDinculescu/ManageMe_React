@@ -1,0 +1,152 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electrónica",
+      "imgSrc": "/src/assets/electronica.jpg",
+      "subcategories": [
+        {
+          "id": 101,
+          "name": "Smartphones"
+        },
+        {
+          "id": 102,
+          "name": "Portátiles"
+        },
+        {
+          "id": 103,
+          "name": "Tablets"
+        },
+        {
+          "id": 104,
+          "name": "Accesorios"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Ropa y Moda",
+      "imgSrc": "/src/assets/ropa.jpg",
+      "subcategories": [
+        {
+          "id": 201,
+          "name": "Hombre"
+        },
+        {
+          "id": 202,
+          "name": "Mujer"
+        },
+        {
+          "id": 203,
+          "name": "Niños"
+        },
+        {
+          "id": 204,
+          "name": "Calzado"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Hogar y Jardín",
+      "imgSrc": "/src/assets/hogar.jpg",
+      "subcategories": [
+        {
+          "id": 301,
+          "name": "Muebles"
+        },
+        {
+          "id": 302,
+          "name": "Decoración"
+        },
+        {
+          "id": 303,
+          "name": "Jardinería"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Deportes",
+      "imgSrc": "/src/assets/deportes.jpg",
+      "subcategories": [
+        {
+          "id": 401,
+          "name": "Fitness"
+        },
+        {
+          "id": 402,
+          "name": "Ciclismo"
+        },
+        {
+          "id": 403,
+          "name": "Natación"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Libros"
+    },
+    {
+      "id": 6,
+      "name": "Juguetes",
+      "imgSrc": "/src/assets/juguetes.jpg",
+      "subcategories": [
+        {
+          "id": 601,
+          "name": "Educativos"
+        },
+        {
+          "id": 602,
+          "name": "Muñecas"
+        },
+        {
+          "id": 603,
+          "name": "Juegos de mesa"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Alimentos y Bebidas"
+    },
+    {
+      "id": 8,
+      "name": "Belleza y Cuidado Personal",
+      "imgSrc": "/src/assets/belleza.jpg",
+      "subcategories": [
+        {
+          "id": 801,
+          "name": "Maquillaje"
+        },
+        {
+          "id": 802,
+          "name": "Cuidado de la piel"
+        },
+        {
+          "id": 803,
+          "name": "Perfumería"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Automóviles"
+    },
+    {
+      "id": 10,
+      "name": "Mascotas",
+      "imgSrc": "/src/assets/pes.webp"
+    },
+    {
+      "id": 11,
+      "name": "Oficina y Papelería"
+    },
+    {
+      "id": 12,
+      "name": "Música e Instrumentos",
+      "imgSrc": "/src/assets/musica.jpg"
+    }
+  ]
+}
