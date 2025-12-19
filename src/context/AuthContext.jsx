@@ -3,7 +3,9 @@ import usersData from "../data/users.json";
 
 const AuthContext = createContext(null);
 
-export function AuthProvider({ children }) {
+// Authentication based on local JSON data, insecure, but enough
+// Is a context, that mean that you can acces the user everywere
+export function AuthProvider({ children }) { 
   const [user, setUser] = useState(() => {
     if (typeof window === "undefined") return null;
     const stored = localStorage.getItem("authUser");
