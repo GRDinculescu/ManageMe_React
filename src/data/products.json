@@ -296,6 +296,17 @@
       "subcategory": "Mujer",
       "subcategoryId": 202,
       "purchasable": true
+    },
+    {
+      "id": 21,
+      "name": "Pez mascota",
+      "price": 99999.99,
+      "brandId": 14,
+      "supplierId": 3,
+      "stock": 1,
+      "categoryId": 10,
+      "imgSrc": "/src/assets/pes.webp",
+      "purchasable": false
     }
   ]
 }
