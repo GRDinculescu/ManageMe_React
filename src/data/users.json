@@ -55,6 +55,14 @@
             "email": "george@manageme.com",
             "password": "client123",
             "rol": "client"
+        },
+        {
+            "id": 7,
+            "name": "Guest User",
+            "username": "guest",
+            "email": "guest@manageme.com",
+            "password": "guest123",
+            "rol": "client"
         }
     ]
 }
