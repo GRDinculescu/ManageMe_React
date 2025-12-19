@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import Modal from "../components/Modal";
 import { useAuth } from "../context/AuthContext";
 
-function UserForm({ mode, user, onSubmit, onDelete, onClose }) {
+function UserForm({ mode, user, onSubmit, onDelete, onClose, canDelete = true }) {
   const isEdit = mode === "edit";
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -110,7 +110,7 @@ function UserForm({ mode, user, onSubmit, onDelete, onClose }) {
           {isEdit ? "Guardar cambios" : "Crear usuario"}
         </button>
         <div className="flex gap-4">
-          {isEdit ? (
+          {isEdit && canDelete ? (
             <button
               type="button"
               onClick={handleDelete}
@@ -180,7 +180,13 @@ export default function Users() {
   };
 
   const handleDeleteUser = (userToDelete) => {
+    if (user && userToDelete.id === user.id) {
+      window.alert("No puedes eliminar tu propio usuario.");
+      return;
+    }
     setUsers((prev) => prev.filter((candidate) => candidate.id !== userToDelete.id));
+    setSelectedUser(null);
+    setMode("create");
     setIsOpen(false);
   };
 
@@ -213,7 +219,7 @@ export default function Users() {
             {filteredUsers.length > 0 ? (
               filteredUsers.map((candidate) => (
                 <div
-                  key={candidate.id}
+                  key={`${candidate.id}-${candidate.username}`}
                   className="cursor-pointer bg-slate-900 hover:bg-gray-800 transition duration-200 rounded-2xl overflow-hidden"
                   onClick={() => openEdit(candidate)}
                 >
@@ -240,6 +246,7 @@ export default function Users() {
             <UserForm
               mode={mode}
               user={selectedUser}
+              canDelete={!user || selectedUser?.id !== user.id}
               onSubmit={(data) => {
                 if (mode === "edit") {
                   handleEditUser(data);
