@@ -11,7 +11,6 @@ function ConfirmModal({ onConfirm, onClose }) {
       <h2 className="text-xl font-bold">¿Estás seguro de que deseas eliminar este producto?</h2>
       <div className="flex gap-4 mt-4">
         <button
-
           onClick={onConfirm}
           className="rounded-sm cursor-pointer transition duration-150 text-white bg-red-600 hover:bg-red-500 focus:ring-1 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
         >
@@ -28,16 +27,11 @@ function ConfirmModal({ onConfirm, onClose }) {
   );
 }
 
-
-
-
 export default function ProductForm({ mode, product, onSubmit, onDelete, onClose }) {
-  // Cargar datos de marcas, proveedores y categorías
   const brands = Brands.brands;
   const suppliers = Suppliers.suppliers;
   const categories = Categories.categories;
  
-  // Estados para los campos del formulario
   const [img, setImg] = useState("/src/assets/noimage.jpg");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -49,16 +43,10 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
   const [subcategoryId, setSubcategoryId] = useState(0);
   const [brandId, setBrandId] = useState(0);
 
-  // Obtener las subcategorías de la categoría seleccionada
   const selectedCategory = categories.find(cat => cat.id === categoryId);
-
-  // Estado para controlar la visibilidad del modal de confirmación
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-
-  // Verificar si estamos en modo edición
   const isEdit = mode === "edit";  
 
-  // Rellenar los campos del formulario si estamos en modo edición
   useEffect(() => {
     setName(product?.name ?? "");
     setPrice(product?.price ?? "");
@@ -72,28 +60,56 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
     setBrandId(product?.brandId ?? 0);
   }, [product]);
 
-  // Manejar el envío del formulario
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      
-      const formData = {
-          imgSrc: img,
-          name: name,
-          price: price,
-          stock: stock,
-          description: description,
-          supplierId: supplierId,
-          purchasable: purchasable,
-          categoryId: categoryId,
-          subcategoryId: subcategoryId,
-          brandId: brandId
+  // ✅ Función para manejar la carga de imágenes
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    
+    if (file) {
+      // Validar que sea una imagen
+      if (!file.type.startsWith('image/')) {
+        alert('Por favor selecciona un archivo de imagen válido');
+        return;
+      }
+
+      // Validar tamaño (opcional, por ejemplo máximo 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('La imagen es demasiado grande. Máximo 5MB');
+        return;
+      }
+
+      // Convertir a base64
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImg(reader.result);
       };
-      
-      // ✅ Si estamos editando, incluir el producto completo con el id
-      onSubmit(mode === "edit" ? { ...product, ...formData } : formData);
+      reader.readAsDataURL(file);
+    }
   };
 
-  // Manejar la eliminación del producto
+  // ✅ Función para eliminar la imagen
+  const handleRemoveImage = () => {
+    setImg("/src/assets/noimage.jpg");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      imgSrc: img,
+      name: name,
+      price: price,
+      stock: stock,
+      description: description,
+      supplierId: supplierId,
+      purchasable: purchasable,
+      categoryId: categoryId,
+      subcategoryId: subcategoryId,
+      brandId: brandId
+    };
+    
+    onSubmit(mode === "edit" ? { ...product, ...formData } : formData);
+  };
+
   const handleDelete = () => {
     onDelete(product);
     setIsConfirmOpen(false);
@@ -107,9 +123,42 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
 
       {/* Formulario */}
       <div className="flex justify-center">
-        <div>
-          <img src={img} alt="" className="w-25 object-cover aspect-square rounded-2xl"/>
-          {/* <img src="/src/assets/img.png" alt="" /> */}
+        {/* ✅ Sección de imagen mejorada */}
+        <div className="relative group">
+          <img 
+            src={img} 
+            alt="Producto" 
+            className="w-25 object-cover aspect-square rounded-2xl"
+          />
+          
+          {/* Overlay con botones */}
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-2xl flex flex-col items-center justify-center gap-2">
+            <label 
+              htmlFor="imageUpload" 
+              className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded text-sm font-medium"
+            >
+              Cambiar imagen
+            </label>
+            
+            {img !== "/src/assets/noimage.jpg" && (
+              <button
+                type="button"
+                onClick={handleRemoveImage}
+                className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-sm font-medium"
+              >
+                Eliminar imagen
+              </button>
+            )}
+          </div>
+          
+          {/* Input oculto para subir archivos */}
+          <input
+            id="imageUpload"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="hidden"
+          />
         </div>
 
         {/* Linea 1 */}
@@ -139,7 +188,6 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
                 onChange={(e) => setStock(e.target.value)}/>
             </div>
           </div>
-
 
           {/* Linea 2 */}
           <div className="flex gap-5 items-center">
@@ -174,7 +222,6 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
         </div>
       </div>
 
-
       {/* Linea 3 */}
       <div className="flex gap-5">
         {/* Categoria */}
@@ -185,7 +232,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
             onChange={(e) => setCategoryId(Number(e.target.value))}>
             {
               categories.map((category) => (
-                  <option key={category.id} value={category.id}>{category.name}</option>
+                <option key={category.id} value={category.id}>{category.name}</option>
               ))
             }
           </select>
@@ -199,7 +246,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
             onChange={(e) => setSubcategoryId(Number(e.target.value))}>
             {
               selectedCategory?.subcategories?.map(subcat => (
-                  <option key={subcat.id} value={subcat.id}>{subcat.name}</option>
+                <option key={subcat.id} value={subcat.id}>{subcat.name}</option>
               ))
             }
           </select>
@@ -213,7 +260,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
             onChange={(e) => setBrandId(Number(e.target.value))}>
             {
               brands.map((brand) => (
-                  <option key={brand.id} value={brand.id}>{brand.name}</option>
+                <option key={brand.id} value={brand.id}>{brand.name}</option>
               ))
             }
           </select>
@@ -222,7 +269,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
 
       {/* Botones */}
       <div className="flex justify-between mt-4 mr-5">
-        <button // Guardar cambios / Crear producto
+        <button
           type="submit"
           className={`p-2 rounded font-bold ${
             isEdit ? "bg-sky-600" : "bg-green-600"
