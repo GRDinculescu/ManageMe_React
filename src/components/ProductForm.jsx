@@ -13,13 +13,13 @@ function ConfirmModal({ onConfirm, onClose }) {
         <button
 
           onClick={onConfirm}
-          className="rounded-sm hover:rounded-2xl cursor-pointer text-white bg-red-600 hover:bg-red-500 focus:ring-4 focus:ring-red-400 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+          className="rounded-sm cursor-pointer transition duration-150 text-white bg-red-600 hover:bg-red-500 focus:ring-1 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
         >
           Sí, eliminar
         </button>
         <button
           onClick={onClose}
-          className="rounded-sm hover:rounded-2xl cursor-pointer text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+          className="rounded-sm cursor-pointer text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
         >
           Cancelar
         </button>
@@ -38,7 +38,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
   const categories = Categories.categories;
  
   // Estados para los campos del formulario
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState("/src/assets/noimage.jpg");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
@@ -66,7 +66,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
     setDescription(product?.description ?? "");
     setSupplierId(product?.supplierId ?? 0);
     setPurchasable(product?.purchasable ?? false);
-    setImg(product?.imgSrc ?? "");
+    setImg(product?.imgSrc ?? "/src/assets/noimage.jpg");
     setCategoryId(product?.categoryId ?? 0);
     setSubcategoryId(product?.subcategoryId ?? 0);
     setBrandId(product?.brandId ?? 0);
@@ -74,10 +74,23 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
 
   // Manejar el envío del formulario
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({
-      product,
-    });
+      e.preventDefault();
+      
+      const formData = {
+          imgSrc: img,
+          name: name,
+          price: price,
+          stock: stock,
+          description: description,
+          supplierId: supplierId,
+          purchasable: purchasable,
+          categoryId: categoryId,
+          subcategoryId: subcategoryId,
+          brandId: brandId
+      };
+      
+      // ✅ Si estamos editando, incluir el producto completo con el id
+      onSubmit(mode === "edit" ? { ...product, ...formData } : formData);
   };
 
   // Manejar la eliminación del producto
@@ -94,8 +107,10 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
 
       {/* Formulario */}
       <div className="flex justify-center">
-        <img src={img} alt="" className="w-25"/>
-
+        <div>
+          <img src={img} alt="" className="w-25 object-cover aspect-square rounded-2xl"/>
+          {/* <img src="/src/assets/img.png" alt="" /> */}
+        </div>
 
         {/* Linea 1 */}
         <div className="flex flex-col justify-center ml-4 gap-5">
@@ -152,7 +167,7 @@ export default function ProductForm({ mode, product, onSubmit, onDelete, onClose
             <div>
               <input className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" type="checkbox" name="comprable" id="comprable"
                 checked={purchasable}
-                onChange={(e) => setPurchasable(e.target.value)}/>
+                onChange={(e) => setPurchasable(e.target.checked)}/>
               <label className="ml-3" htmlFor="comprable">Comprable</label>
             </div>
           </div>
