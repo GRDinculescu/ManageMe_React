@@ -39,6 +39,12 @@ export default function Login() {
   };
 
   const handleGuest = () => {
+    const result = login("guest", "guest123");
+    
+    if (!result?.success) {
+      setError(result?.message || "No se pudo iniciar sesión.");
+      return;
+    }
     navigate("/");
   };
 
@@ -63,7 +69,7 @@ export default function Login() {
                 hayas iniciado sesión.
               </p>
               <p className="text-xs text-white/50">
-                Admin: alice/bob (admin123) · Clientes: charlie/diana/ethan/fiona/george (client123)
+                Admin: alice/bob (admin123)<br/>Clientes: charlie/diana/ethan/fiona/george (client123)
               </p>
             </div>
           </div>
