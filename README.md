@@ -1,4 +1,5 @@
 # ManagMe
+# Proyecto de clase / Class project
 
 The last project, but in react, if you want more info, see the other :P
 
