@@ -1,0 +1,68 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Alice Smith",
+            "username": "alice",
+            "email": "alice@manageme.com",
+            "password": "admin123",
+            "rol": "admin"
+        },
+        {
+            "id": 2,
+            "name": "Bob Johnson",
+            "username": "bob",
+            "email": "bob@manageme.com",
+            "password": "admin123",
+            "rol": "admin"
+        },
+        {
+            "id": 3,
+            "name": "Charlie Brown",
+            "username": "charlie",
+            "email": "charlie@manageme.com",
+            "password": "client123",
+            "rol": "client"
+        },
+        {
+            "id": 4,
+            "name": "Diana Prince",
+            "username": "diana",
+            "email": "diana@manageme.com",
+            "password": "client123",
+            "rol": "client"
+        },
+        {
+            "id": 5,
+            "name": "Ethan Hunt",
+            "username": "ethan",
+            "email": "ethan@manageme.com",
+            "password": "client123",
+            "rol": "client"
+        },
+        {
+            "id": 6,
+            "name": "Fiona Green",
+            "username": "fiona",
+            "email": "fiona@manageme.com",
+            "password": "client123",
+            "rol": "client"
+        },
+        {
+            "id": 7,
+            "name": "George Miller",
+            "username": "george",
+            "email": "george@manageme.com",
+            "password": "client123",
+            "rol": "client"
+        },
+        {
+            "id": 7,
+            "name": "Guest User",
+            "username": "guest",
+            "email": "guest@manageme.com",
+            "password": "guest123",
+            "rol": "client"
+        }
+    ]
+}

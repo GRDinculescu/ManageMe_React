@@ -1,0 +1,52 @@
+{
+  "suppliers": [
+    {
+      "id": 1,
+      "name": "Distribuidora Global S.L."
+    },
+    {
+      "id": 2,
+      "name": "Suministros Industriales Pérez"
+    },
+    {
+      "id": 3,
+      "name": "Comercial Martínez y Asociados"
+    },
+    {
+      "id": 4,
+      "name": "Importaciones del Norte"
+    },
+    {
+      "id": 5,
+      "name": "Almacenes Rodríguez"
+    },
+    {
+      "id": 6,
+      "name": "Tecnología y Equipos S.A."
+    },
+    {
+      "id": 7,
+      "name": "Grupo Logístico Mediterráneo"
+    },
+    {
+      "id": 8,
+      "name": "Productos Selectos Iberia"
+    },
+    {
+      "id": 9,
+      "name": "Mayorista García Hermanos"
+    },
+    {
+      "id": 10,
+      "name": "Suministros Rápidos Express"
+    },
+    {
+      "id": 11,
+      "name": "Distribuciones Fernández"
+    },
+    {
+      "id": 12,
+      "name": "Proveedora Central de Aragón"
+    }
+  ]
+}

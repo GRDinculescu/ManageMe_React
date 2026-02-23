@@ -1,0 +1,64 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "name": "TechPro"
+    },
+    {
+      "id": 2,
+      "name": "StyleMax"
+    },
+    {
+      "id": 3,
+      "name": "HomeComfort"
+    },
+    {
+      "id": 4,
+      "name": "SportElite"
+    },
+    {
+      "id": 5,
+      "name": "EcoNature"
+    },
+    {
+      "id": 6,
+      "name": "UrbanStyle"
+    },
+    {
+      "id": 7,
+      "name": "PremiumSelect"
+    },
+    {
+      "id": 8,
+      "name": "VitalCare"
+    },
+    {
+      "id": 9,
+      "name": "SmartLife"
+    },
+    {
+      "id": 10,
+      "name": "ClassicDesign"
+    },
+    {
+      "id": 11,
+      "name": "ActiveFit"
+    },
+    {
+      "id": 12,
+      "name": "Innovation Labs"
+    },
+    {
+      "id": 13,
+      "name": "QualityFirst"
+    },
+    {
+      "id": 14,
+      "name": "ModernLiving"
+    },
+    {
+      "id": 15,
+      "name": "EssentialPlus"
+    }
+  ]
+}
