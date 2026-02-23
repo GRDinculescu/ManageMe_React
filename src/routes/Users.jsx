@@ -3,6 +3,9 @@ import { Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import Modal from "../components/Modal";
 import { useAuth } from "../context/AuthContext";
+import UsabilityReport from "../components/UsabilityReport";
+
+const USABILITY_CLICKS_STORAGE_KEY = "usability_click_events";
 
 function UserForm({ mode, user, onSubmit, onDelete, onClose, canDelete = true }) {
   const isEdit = mode === "edit";
@@ -138,6 +141,16 @@ export default function Users() {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState("create");
   const [selectedUser, setSelectedUser] = useState(null);
+  const [clickEvents, setClickEvents] = useState(() => {
+    if (typeof window === "undefined") return [];
+    const stored = localStorage.getItem(USABILITY_CLICKS_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(USABILITY_CLICKS_STORAGE_KEY, JSON.stringify(clickEvents));
+  }, [clickEvents]);
 
   const filteredUsers = useMemo(() => {
     const normalized = searchText.trim().toLowerCase();
@@ -190,6 +203,10 @@ export default function Users() {
     setIsOpen(false);
   };
 
+  const handleRegisterClick = () => {
+    setClickEvents((prev) => [...prev, new Date().toISOString()]);
+  };
+
   if (role !== "admin") {
     return <Navigate to="/home" replace />;
   }
@@ -197,7 +214,7 @@ export default function Users() {
   return (
     <>
       <Layout>
-        <div className="flex flex-col gap-4 pt-14 h-screen w-screen overflow-hidden">
+        <div className="flex flex-col gap-4 pt-14 w-screen overflow-hidden">
           <div className="flex gap-5 py-3 px-5 bg-gray-800 rounded-2xl mx-5">
             <input
               type="text"
@@ -213,9 +230,18 @@ export default function Users() {
             >
               +
             </button>
+            <button
+              type="button"
+              onClick={handleRegisterClick}
+              className="bg-sky-600 hover:bg-sky-500 transition duration-300 px-4 rounded-lg font-bold"
+            >
+              Registrar click
+            </button>
           </div>
 
-          <div className="flex-1 grid grid-cols-[repeat(auto-fill,minmax(420px,1fr))] gap-5 p-5 bg-gray-700 rounded-t-2xl overflow-y-auto content-start">
+          <UsabilityReport clickEvents={clickEvents} />
+
+          <div className="flex-1 grid grid-cols-[repeat(auto-fill,minmax(420px,1fr))] gap-5 p-5 bg-gray-700 rounded-t-2xl overflow-y-auto content-start mx-5 mb-5">
             {filteredUsers.length > 0 ? (
               filteredUsers.map((candidate) => (
                 <div
